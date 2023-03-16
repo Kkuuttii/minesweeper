@@ -6,6 +6,7 @@ ol,ul{list-style:none}
 blockquote,q{quotes:none}
 blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}
 table{border-collapse:collapse;border-spacing:0}
+@import url('https://fonts.googleapis.com/css2?family=Indie+Flower&display=swap');
 
 body{
     width: 100%;
@@ -20,6 +21,13 @@ body{
 }
 
 :root {
+    font-family: 'Indie Flower', cursive;
+    font-size: 60px;
+
+    --interface-purple: #aea4e397;
+    --interface-green: #d3ffe8ae;
+    // --interface-purple: #aea4e3;
+    // --interface-green: #d3ffe8;
     --cell-yellow: #efefbb;
     --cell-purple: #d4d3dd;
 }

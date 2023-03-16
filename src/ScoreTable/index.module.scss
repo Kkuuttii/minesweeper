@@ -1,10 +1,13 @@
 .ScoreTable{
-    background-color: antiquewhite;
+    background: linear-gradient(90deg, var(--interface-purple), var(--interface-green));
     width: 480px;
-    height: 85px;
+    height: 65px;
+    padding: 25px 20px 10px 20px;
+
     display: flex;
+    text-align: center;
 }
 
 .image{
-    width: 50px;
+    width: 60px;
 }
