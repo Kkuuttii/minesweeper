@@ -1,7 +1,8 @@
 .PlayingField{
-    background-color: aqua;
+    background: linear-gradient(90deg, var(--interface-purple), var(--interface-green));
     width: 480px;
     height: 480px;
     display: flex;
     flex-wrap: wrap;
+    padding: 0 20px 20px 20px;
 }
