@@ -1,0 +1,21 @@
+.cell {
+  width: 30px;
+  height: 30px;
+  background-image: linear-gradient(
+    to right,
+    var(--cell-yellow) 0%,
+    var(--cell-purple) 51%,
+    var(--cell-yellow) 100%
+  );
+  text-align: center;
+  transition: 0.5s;
+  background-size: 200% auto;
+  color: white;
+  box-shadow: 0 0 20px #eee;
+  border-radius: 4px;
+  display: block;
+}
+
+.cell:hover {
+  background-position: right center;
+}
