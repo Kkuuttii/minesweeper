@@ -4,7 +4,7 @@ import usualMouse from "../images/usualMouse.jpeg";
 function ScoreTable() {
   return (
     <div className={styles.ScoreTable}>
-      <div>010</div>
+      <div>040</div>
       <div>
         <img src={usualMouse} alt="mouse" className={styles.image}></img>
       </div>
