@@ -3,9 +3,12 @@ import { useState } from "react";
 
 interface ICell {
   onClick: () => void;
+  onMouseDown: () => void;
+  onMouseUp: () => void;
+  id: string;
 }
 
-function Cell({ onClick }: ICell) {
+function Cell({ onClick, onMouseDown, onMouseUp, id }: ICell) {
   const [clicked, setClicked] = useState<boolean>(false);
   const handlerClick = () => {
     setClicked(true);
@@ -15,7 +18,11 @@ function Cell({ onClick }: ICell) {
     <div
       className={clicked === false ? styles.cell : styles.clickedCell}
       onClick={handlerClick}
-    ></div>
+      onMouseDown={onMouseDown}
+      onMouseUp={onMouseUp}
+    >
+      {id}
+    </div>
   );
 }
 
