@@ -1,14 +1,25 @@
 import styles from "./index.module.scss";
 import usualMouse from "../images/usualMouse.jpeg";
+import interestedMouse from "../images/interestedMouse.png";
+import Timer from "../Timer";
 
-function ScoreTable() {
+interface IScoreTable {
+  isTimerStarted: boolean;
+  isCellDown: boolean;
+}
+
+function ScoreTable({ isTimerStarted, isCellDown }: IScoreTable) {
   return (
     <div className={styles.ScoreTable}>
       <div>040</div>
       <div>
-        <img src={usualMouse} alt="mouse" className={styles.image}></img>
+        <img
+          src={isCellDown ? interestedMouse : usualMouse}
+          alt="mouse"
+          className={styles.image}
+        ></img>
       </div>
-      <div>000</div>
+      <Timer isTimerStarted={isTimerStarted} />
     </div>
   );
 }
