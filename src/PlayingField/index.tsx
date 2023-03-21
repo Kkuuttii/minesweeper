@@ -1,6 +1,7 @@
 import styles from "./index.module.scss";
-import { useState } from "react";
+import { useState, useMemo } from "react";
 import Cell from "../Cell";
+import { randomIntegers } from "../utils/global";
 
 interface IPlayingField {
   onCellClick: () => void;
@@ -22,6 +23,10 @@ function PlayingField({
     const OXId = index - OYId * 16;
     return `${OYId}_${OXId}`;
   };
+
+  //должно генерироваться при первом клике
+  const bombsIndexes: number[] = useMemo(() => randomIntegers(255, 40), []);
+
   const cells = [];
   for (let i = 0; i < 256; i++) {
     cells.push(
@@ -30,6 +35,7 @@ function PlayingField({
         onMouseDown={cellMouseDownHandler}
         onMouseUp={cellMouseUpHandler}
         id={idMaker(i)}
+        isBomb={bombsIndexes.includes(i)}
       />
     );
   }

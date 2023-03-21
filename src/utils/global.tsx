@@ -5,3 +5,15 @@ export const formatTime = (time: number) => {
     return `0${time}`;
   } else return time;
 };
+
+export const randomIntegers = (to: number, numbersAmount: number) => {
+  const arr: number[] = [];
+  do {
+    let num = Math.trunc(Math.random() * 1000);
+    if (num <= to && !arr.includes(num)) {
+      arr.push(num);
+    }
+  } while (arr.length < numbersAmount);
+
+  return arr;
+};
