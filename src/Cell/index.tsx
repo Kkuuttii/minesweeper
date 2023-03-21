@@ -6,13 +6,15 @@ interface ICell {
   onMouseDown: () => void;
   onMouseUp: () => void;
   id: string;
+  isBomb: boolean;
 }
 
-function Cell({ onClick, onMouseDown, onMouseUp, id }: ICell) {
+function Cell({ onClick, onMouseDown, onMouseUp, id, isBomb }: ICell) {
   const [clicked, setClicked] = useState<boolean>(false);
   const handlerClick = () => {
     setClicked(true);
     onClick();
+    console.log(isBomb);
   };
   return (
     <div
@@ -20,8 +22,9 @@ function Cell({ onClick, onMouseDown, onMouseUp, id }: ICell) {
       onClick={handlerClick}
       onMouseDown={onMouseDown}
       onMouseUp={onMouseUp}
+      id={id}
     >
-      {id}
+      {isBomb && 1}
     </div>
   );
 }
