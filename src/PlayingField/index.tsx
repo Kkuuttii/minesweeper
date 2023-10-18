@@ -1,46 +1,52 @@
 import styles from "./index.module.scss";
-import { useState, useMemo } from "react";
+import { useMemo } from "react";
 import Cell from "../Cell";
-import { randomIntegers } from "../utils/global";
+import { getIdByIndex } from "../utils/global";
+import { useDispatch } from "react-redux";
+import { ACTIONS } from "../store/reducer";
 
 interface IPlayingField {
   onCellClick: () => void;
-  cellMouseDownHandler: () => void;
-  cellMouseUpHandler: () => void;
+  onCellMouseDown: () => void;
+  onCellMouseUp: () => void;
 }
 
 function PlayingField({
   onCellClick,
-  cellMouseDownHandler,
-  cellMouseUpHandler,
+  onCellMouseDown,
+  onCellMouseUp,
 }: IPlayingField) {
-  const cellClickHandler = () => {
-    onCellClick();
-  };
+  const dispatch = useDispatch();
 
-  const idMaker = (index: number) => {
-    const OYId = Math.trunc(index / 16);
-    const OXId = index - OYId * 16;
-    return `${OYId}_${OXId}`;
-  };
+  const getCells: JSX.Element[] = useMemo(() => {
+    const newCells = [];
 
-  //должно генерироваться при первом клике
-  const bombsIndexes: number[] = useMemo(() => randomIntegers(255, 40), []);
+    for (let i = 0; i < 256; i++) {
+      let id = getIdByIndex(i);
 
-  const cells = [];
-  for (let i = 0; i < 256; i++) {
-    cells.push(
-      <Cell
-        onClick={cellClickHandler}
-        onMouseDown={cellMouseDownHandler}
-        onMouseUp={cellMouseUpHandler}
-        id={idMaker(i)}
-        isBomb={bombsIndexes.includes(i)}
-      />
-    );
+      newCells.push(
+        <Cell
+          onClick={cellClickHandler}
+          onMouseDown={onCellMouseDown}
+          onMouseUp={onCellMouseUp}
+          id={id}
+          key={id}
+        />
+      );
+      dispatch({
+        type: ACTIONS.ADD_CELL,
+        payload: { id: id, isClicked: false },
+      });
+    }
+
+    return newCells;
+  }, [onCellMouseDown, onCellMouseUp, dispatch]);
+
+  function cellClickHandler() {
+    // onCellClick();
   }
 
-  return <div className={styles.PlayingField}>{cells}</div>;
+  return <div className={styles.PlayingField}>{getCells}</div>;
 }
 
 export default PlayingField;
